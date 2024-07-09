@@ -1,21 +1,31 @@
 const express = require('express');
 const app = express();
 const path = require('path')
-
+const ejs = require('ejs')
 
 const PORT = 3789;
 
 
+app.set('view engine','ejs')
 app.use(express.static('public'))
 
 
 app.get('/',(req,res)=>{
-    res.sendFile(path.resolve(__dirname,'temp/index.html'))
+  res.render('index')
 })
 app.get('/about',(req,res)=>{
-    res.sendFile(path.resolve(__dirname,'./temp/about.html'))
+    res.render('about')
 })
 
+
+app.get('/photo',(req,res)=>{
+    res.render('photo')
+})
+
+app.get('/add',(req,res)=>{
+
+    res.render('add')
+})
 app.listen(PORT,()=>{
 
 console.log(`server Listening on port ${PORT}`);
